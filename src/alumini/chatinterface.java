@@ -135,6 +135,7 @@ public class chatinterface extends javax.swing.JFrame {
         lbldesignation = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         btnDirectMessage = new javax.swing.JButton();
+        btnCommunity = new javax.swing.JButton(); // ✅ Added Community Button
         btnLogout = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -197,6 +198,14 @@ public class chatinterface extends javax.swing.JFrame {
                 btnDirectMessageActionPerformed(evt);
             }
         });
+        
+        // ✅ COMMUNITY BUTTON SETUP
+        btnCommunity.setText("Community Chat");
+        btnCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCommunityActionPerformed(evt);
+            }
+        });
 
         btnLogout.setText("Logout");
         btnLogout.addActionListener(new java.awt.event.ActionListener() {
@@ -222,6 +231,7 @@ public class chatinterface extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnDirectMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE)
+                            .addComponent(btnCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, 142, Short.MAX_VALUE) // ✅ Added to Layout
                             .addComponent(btnLogout, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -245,6 +255,8 @@ public class chatinterface extends javax.swing.JFrame {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnDirectMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE) // ✅ Added to Layout
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -332,12 +344,34 @@ public class chatinterface extends javax.swing.JFrame {
     }                                        
 
     private void btnDirectMessageActionPerformed(java.awt.event.ActionEvent evt) {                                                 
-        String targetUser = JOptionPane.showInputDialog(this, "Enter the Username to chat with:");
+        String[] availableUsers = fetchAvailableUsers(this.role);
+
+        if (availableUsers.length == 0) {
+            JOptionPane.showMessageDialog(this, "No users found to chat with.");
+            return;
+        }
+
+        String targetUser = (String) JOptionPane.showInputDialog(
+                this, 
+                "Select a person to chat with:", 
+                "Direct Message", 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                availableUsers, 
+                availableUsers[0] 
+        );
+
         if (targetUser != null && !targetUser.trim().isEmpty()) {
             PrivateChat pc = new PrivateChat(this.username, targetUser.trim());
             pc.setVisible(true);
         }
-    }                                                
+    }       
+    
+    // ✅ COMMUNITY BUTTON ACTION
+    private void btnCommunityActionPerformed(java.awt.event.ActionEvent evt) {                                             
+        GlobalChat gChat = new GlobalChat(this.username, this.role);
+        gChat.setVisible(true);
+    }
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.dispose();
@@ -356,7 +390,7 @@ public class chatinterface extends javax.swing.JFrame {
         String[] roles = {"engineer", "developer", "analyst", "associate", "lead", "research", "manager"};
         for (String r : roles) if (msg.contains(r)) p.designation = capitalize(r);
         for (int year = 2000; year <= 2030; year++) if (msg.contains(String.valueOf(year))) p.batch = year;
-        if (msg.contains("amit sharma")) p.name = "Amit Sharma"; // Add more names if needed
+        if (msg.contains("amit sharma")) p.name = "Amit Sharma"; 
         return p;
     }
 
@@ -456,8 +490,31 @@ public class chatinterface extends javax.swing.JFrame {
             if (rs.next()) reply = rs.getString("reply");
         } catch (SQLException e) { reply = "Database error: " + e.getMessage(); }
         return reply;
+
     }
 
+    // ✅ METHOD TO FETCH USERS FOR DROPDOWN
+    private String[] fetchAvailableUsers(String myRole) {
+        ArrayList<String> list = new ArrayList<>();
+        String query;
+
+        if ("alumni".equalsIgnoreCase(myRole)) {
+            query = "SELECT username FROM users ORDER BY username ASC";
+        } else {
+            query = "SELECT username FROM alumni ORDER BY username ASC";
+        }
+
+        try (Connection conn = dbconnection.getConnection(); PreparedStatement ps = conn.prepareStatement(query); ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                list.add(rs.getString("username"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new String[]{};
+        }
+        return list.toArray(new String[0]);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -468,6 +525,7 @@ public class chatinterface extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JTextArea TxtChatArea;
     private javax.swing.JTextField TxtMessage;
+    private javax.swing.JButton btnCommunity; // ✅ Variable added
     private javax.swing.JButton btnDirectMessage;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton jButton1;
