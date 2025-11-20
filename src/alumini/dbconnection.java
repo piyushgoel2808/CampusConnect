@@ -6,7 +6,7 @@ import java.sql.SQLException;
 public class dbconnection {
     private static final String URL = "jdbc:mysql://localhost:3306/chatbot"; // your DB name
     private static final String USER = "root"; // default XAMPP username
-    private static final String PASSWORD = ""; // empty if no password set
+    private static final String PASSWORD = "root"; // empty if no password set
 
     public static Connection getConnection() {
         Connection conn = null;

@@ -428,6 +428,8 @@ private JobQueryParams extractJobParameters(String msg) {
         lblcompany = new javax.swing.JLabel();
         lbldesignation = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        btnCommunity = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 51));
@@ -485,7 +487,7 @@ private JobQueryParams extractJobParameters(String msg) {
 
         lbldesignation.setText("jLabel7");
 
-        jButton2.setText("jButton2");
+        jButton2.setText("Export Chat");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -532,6 +534,20 @@ private JobQueryParams extractJobParameters(String msg) {
                 .addGap(23, 23, 23))
         );
 
+        jButton3.setText("Logout");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        btnCommunity.setText("Join Community Chat");
+        btnCommunity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCommunityActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -539,13 +555,21 @@ private JobQueryParams extractJobParameters(String msg) {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(70, 70, 70)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(119, 119, 119)
+                        .addComponent(btnCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(241, 241, 241)
+                .addGap(290, 290, 290)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,7 +578,12 @@ private JobQueryParams extractJobParameters(String msg) {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                            .addComponent(btnCommunity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
@@ -608,10 +637,12 @@ else {
         return;
     }
 
-    try {
-        // Create JSON object
-        org.json.JSONObject json = new org.json.JSONObject();
-        json.put("chatbot_response", lastBotReply);
+  try {
+        // --- MANUAL JSON CONSTRUCTION (No Library Needed) ---
+        // We escape quotes using \" to make valid JSON
+        String jsonContent = "{\n" +
+                             "    \"chatbot_response\": \"" + lastBotReply + "\"\n" +
+                             "}";
 
         // Choose location to save
         javax.swing.JFileChooser chooser = new javax.swing.JFileChooser();
@@ -623,7 +654,7 @@ else {
         if (result == javax.swing.JFileChooser.APPROVE_OPTION) {
             java.io.File file = chooser.getSelectedFile();
             java.io.FileWriter fw = new java.io.FileWriter(file);
-            fw.write(json.toString(4)); // pretty print with indentation
+            fw.write(jsonContent); 
             fw.close();
 
             JOptionPane.showMessageDialog(this, 
@@ -636,6 +667,25 @@ else {
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose(); 
+    
+    // Open the Main Home Dashboard
+    new MainHome().setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void btnCommunityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCommunityActionPerformed
+        // TODO add your handling code here:
+        // We need the username and role to pass to the chat window
+    // Since you store them in this class (this.username, this.role)
+    
+    GlobalChat gChat = new GlobalChat(this.username, this.role);
+    gChat.setVisible(true);
+    
+    // Note: We do NOT dispose() the current window, so they can keep both open if they want.
+    }//GEN-LAST:event_btnCommunityActionPerformed
 private String getDynamicJobResults(JobQueryParams p) {
 
     StringBuilder sql = new StringBuilder("SELECT title, company, location, description FROM job_opportunities WHERE 1=1 ");
@@ -817,8 +867,10 @@ private String getBotReplyFromDatabase(String userMessage) {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea TxtChatArea;
     private java.awt.TextField TxtMessage;
+    private javax.swing.JButton btnCommunity;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

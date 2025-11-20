@@ -225,3 +225,27 @@ VALUES
 (13, 'Mechanical CAD Engineer', 'Bosch', 'Coimbatore', '₹4.5 LPA', 'Job', 'Mechanical', 'Design mechanical parts using SolidWorks and CATIA.', '2025-11-12', 'vikas_r'),
 (14, 'Cloud Engineer', 'AWS', 'Bangalore', '₹8.0 LPA', 'Job', 'IT', 'Manage cloud infrastructure and automate deployments.', '2025-11-12', 'jatin_g'),
 (15, 'Digital Marketing Intern', 'Byju\'s', 'Bangalore', '₹10,000/mo', 'Internship', 'Marketing', 'Assist in SEO, SMM and running ad campaigns.', '2025-11-12', 'anita_j');
+
+
+
+USE chatbot;
+
+CREATE TABLE `community_chat` (
+  `chat_id` INT NOT NULL AUTO_INCREMENT,
+  `sender_name` VARCHAR(100) NOT NULL,
+  `role` VARCHAR(50) NOT NULL,  -- e.g., 'Student' or 'Alumni'
+  `message` TEXT NOT NULL,
+  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`chat_id`)
+);
+
+USE chatbot;
+
+CREATE TABLE `private_chats` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `sender` VARCHAR(50) NOT NULL,
+  `receiver` VARCHAR(50) NOT NULL,
+  `message` TEXT NOT NULL,
+  `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
