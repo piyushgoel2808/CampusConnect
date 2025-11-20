@@ -163,7 +163,7 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="142" max="-2" attributes="0"/>
+                  <Component id="btnDirectMessage" min="-2" pref="142" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -184,7 +184,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="lbldesignation" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace pref="26" max="32767" attributes="0"/>
-                  <Component id="jButton2" min="-2" pref="32" max="-2" attributes="0"/>
+                  <Component id="btnDirectMessage" min="-2" pref="32" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -221,12 +221,12 @@
             <Property name="text" type="java.lang.String" value="jLabel7"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="btnDirectMessage">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Export Chat"/>
+            <Property name="text" type="java.lang.String" value="Direct Message"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDirectMessageActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
