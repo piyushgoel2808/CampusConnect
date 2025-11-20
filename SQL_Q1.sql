@@ -81,16 +81,18 @@ CREATE TABLE IF NOT EXISTS `faqs` (
 -- -----------------------------------------------------
 -- 8. Table structure for table `job_opportunities`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `job_opportunities`;
 CREATE TABLE IF NOT EXISTS `job_opportunities` (
   `job_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(100) NOT NULL,
   `company` VARCHAR(100) NOT NULL,
   `location` VARCHAR(100) NOT NULL,
-  `type` VARCHAR(50) NOT NULL, -- e.g., Internship, Job
+  `salary` VARCHAR(50) DEFAULT 'Not Disclosed',  -- Newly added column
+  `type` VARCHAR(50) NOT NULL,
   `department` VARCHAR(100) NOT NULL,
   `description` TEXT NOT NULL,
   `posted_date` DATE NOT NULL,
-  `posted_by` VARCHAR(50) NOT NULL, -- Likely links to alumni username
+  `posted_by` VARCHAR(50) NOT NULL,
   PRIMARY KEY (`job_id`)
 );
 
@@ -205,19 +207,21 @@ INSERT INTO `events` (`id`, `event_name`, `event_date`, `event_venue`, `descript
 -- -----------------------------------------------------
 -- 8. Insert data into `job_opportunities`
 -- -----------------------------------------------------
-INSERT INTO `job_opportunities` (`job_id`, `title`, `company`, `location`, `type`, `department`, `description`, `posted_date`, `posted_by`) VALUES
-(1, 'Software Engineer Intern', 'Infosys', 'Pune', 'Internship', 'Computer Science', '6-month internship focusing on backend Java development.', '2025-11-10', 'amit_s'),
-(2, 'Junior Data Analyst', 'Accenture', 'Bangalore', 'Job', 'IT', 'Full-time role involving SQL, Excel, and Power BI.', '2025-11-09', 'kavita_r'),
-(3, 'Embedded Systems Intern', 'Intel', 'Hyderabad', 'Internship', 'Electronics', 'Hands-on internship in embedded firmware and circuit design.', '2025-11-08', 'divya_j'),
-(4, 'Civil Site Engineer', 'Larsen & Toubro', 'Mumbai', 'Job', 'Civil', 'Full-time field engineer role for recent graduates.', '2025-11-07', 'vikram_n'),
-(5, 'Mechanical Design Intern', 'Mahindra & Mahindra', 'Chennai', 'Internship', 'Mechanical', 'Internship in CAD design and prototype testing.', '2025-11-06', 'rohan_g'),
-(6, 'Backend Developer', 'TCS', 'Chennai', 'Job', 'Computer Science', 'Work on backend microservices using Java and Spring Boot.', '2025-11-12', 'arjun_t'),
-(7, 'Network Security Intern', 'Cisco', 'Pune', 'Internship', 'IT', 'Assist in configuring firewalls and analyzing security logs.', '2025-11-12', 'meera_c'),
-(8, 'AI Research Assistant', 'Google', 'Hyderabad', 'Internship', 'Artificial Intelligence', 'Support AI model training and dataset management.', '2025-11-12', 'rahul_s'),
-(9, 'Business Analyst', 'Deloitte', 'Bangalore', 'Job', 'Business', 'Analyze business processes and create workflow reports.', '2025-11-12', 'neha_d'),
-(10, 'Frontend Developer', 'Wipro', 'Noida', 'Job', 'Computer Science', 'Develop responsive UI using React and TypeScript.', '2025-11-12', 'sumit_k'),
-(11, 'Embedded Hardware Intern', 'Qualcomm', 'Chennai', 'Internship', 'Electronics', 'Assist in PCB testing and microcontroller programming.', '2025-11-12', 'divya_s'),
-(12, 'Civil Site Intern', 'Shapoorji Pallonji', 'Mumbai', 'Internship', 'Civil', 'Support site inspection and construction planning.', '2025-11-12', 'rohit_m'),
-(13, 'Mechanical CAD Engineer', 'Bosch', 'Coimbatore', 'Job', 'Mechanical', 'Design mechanical parts using SolidWorks and CATIA.', '2025-11-12', 'vikas_r'),
-(14, 'Cloud Engineer', 'AWS', 'Bangalore', 'Job', 'IT', 'Manage cloud infrastructure and automate deployments.', '2025-11-12', 'jatin_g'),
-(15, 'Digital Marketing Intern', 'Byju\'s', 'Bangalore', 'Internship', 'Marketing', 'Assist in SEO, SMM and running ad campaigns.', '2025-11-12', 'anita_j');
+INSERT INTO `job_opportunities` 
+(`job_id`, `title`, `company`, `location`, `salary`, `type`, `department`, `description`, `posted_date`, `posted_by`) 
+VALUES
+(1, 'Software Engineer Intern', 'Infosys', 'Pune', '₹20,000/mo', 'Internship', 'Computer Science', '6-month internship focusing on backend Java development.', '2025-11-10', 'amit_s'),
+(2, 'Junior Data Analyst', 'Accenture', 'Bangalore', '₹5.5 LPA', 'Job', 'IT', 'Full-time role involving SQL, Excel, and Power BI.', '2025-11-09', 'kavita_r'),
+(3, 'Embedded Systems Intern', 'Intel', 'Hyderabad', '₹25,000/mo', 'Internship', 'Electronics', 'Hands-on internship in embedded firmware and circuit design.', '2025-11-08', 'divya_j'),
+(4, 'Civil Site Engineer', 'Larsen & Toubro', 'Mumbai', '₹4.0 LPA', 'Job', 'Civil', 'Full-time field engineer role for recent graduates.', '2025-11-07', 'vikram_n'),
+(5, 'Mechanical Design Intern', 'Mahindra & Mahindra', 'Chennai', '₹15,000/mo', 'Internship', 'Mechanical', 'Internship in CAD design and prototype testing.', '2025-11-06', 'rohan_g'),
+(6, 'Backend Developer', 'TCS', 'Chennai', '₹7.0 LPA', 'Job', 'Computer Science', 'Work on backend microservices using Java and Spring Boot.', '2025-11-12', 'arjun_t'),
+(7, 'Network Security Intern', 'Cisco', 'Pune', '₹22,000/mo', 'Internship', 'IT', 'Assist in configuring firewalls and analyzing security logs.', '2025-11-12', 'meera_c'),
+(8, 'AI Research Assistant', 'Google', 'Hyderabad', '₹30,000/mo', 'Internship', 'Artificial Intelligence', 'Support AI model training and dataset management.', '2025-11-12', 'rahul_s'),
+(9, 'Business Analyst', 'Deloitte', 'Bangalore', '₹6.5 LPA', 'Job', 'Business', 'Analyze business processes and create workflow reports.', '2025-11-12', 'neha_d'),
+(10, 'Frontend Developer', 'Wipro', 'Noida', '₹5.0 LPA', 'Job', 'Computer Science', 'Develop responsive UI using React and TypeScript.', '2025-11-12', 'sumit_k'),
+(11, 'Embedded Hardware Intern', 'Qualcomm', 'Chennai', '₹20,000/mo', 'Internship', 'Electronics', 'Assist in PCB testing and microcontroller programming.', '2025-11-12', 'divya_s'),
+(12, 'Civil Site Intern', 'Shapoorji Pallonji', 'Mumbai', '₹12,000/mo', 'Internship', 'Civil', 'Support site inspection and construction planning.', '2025-11-12', 'rohit_m'),
+(13, 'Mechanical CAD Engineer', 'Bosch', 'Coimbatore', '₹4.5 LPA', 'Job', 'Mechanical', 'Design mechanical parts using SolidWorks and CATIA.', '2025-11-12', 'vikas_r'),
+(14, 'Cloud Engineer', 'AWS', 'Bangalore', '₹8.0 LPA', 'Job', 'IT', 'Manage cloud infrastructure and automate deployments.', '2025-11-12', 'jatin_g'),
+(15, 'Digital Marketing Intern', 'Byju\'s', 'Bangalore', '₹10,000/mo', 'Internship', 'Marketing', 'Assist in SEO, SMM and running ad campaigns.', '2025-11-12', 'anita_j');
