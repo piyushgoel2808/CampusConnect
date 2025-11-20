@@ -249,3 +249,14 @@ CREATE TABLE `private_chats` (
   `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 );
+
+
+USE chatbot;
+
+CREATE TABLE `wall_images` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `image_name` VARCHAR(255) NOT NULL,
+  `uploaded_by` VARCHAR(100) NOT NULL,
+  `upload_date` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
