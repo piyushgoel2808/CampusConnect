@@ -123,13 +123,13 @@ public class chatinterface extends JFrame {
         lblMenuHeader.setFont(new Font("Segoe UI", Font.BOLD, 12));
 
         // Creating Styled Buttons
-        btnDirectMessage = createMenuButton("💬 Direct Message");
-        btnCommunity = createMenuButton("👥 Community Chat");
-        btnWall = createMenuButton("📸 Memory Wall");
+        btnDirectMessage = createMenuButton("» Direct Message");
+        btnCommunity = createMenuButton("● Community Chat");
+        btnWall = createMenuButton("[+] Memory Wall");
         btnSeniors = createMenuButton("👨‍🎓 View Seniors");
         btnExport = createMenuButton("💾 Export Chat");
-        btnLogout = createMenuButton("🚪 Logout");
-        btnEditProfile = createMenuButton("✏️ Edit Profile");
+        btnLogout = createMenuButton("X Logout");
+        btnEditProfile = createMenuButton("Edit Profile");
 
         btnLogout.setBackground(new Color(192, 57, 43)); // Red for logout
 
