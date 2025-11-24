@@ -27,10 +27,13 @@ public class chatinterface extends JFrame {
     private JPanel pnlSideBar, pnlMain;
     
     // ✅ FIXED: Variable names now match exactly
-    private JButton btnSend, btnDirectMessage, btnCommunity, btnWall, btnSeniors, btnExport, btnLogout;
+    private JButton btnSend, btnDirectMessage, btnCommunity, btnWall, btnSeniors, btnExport, btnLogout,btnEditProfile;
     
     // Profile Labels
     private JLabel lblWelcome, lblEmail, lblBatch, lblDept, lblCompany, lblRole;
+    // ... existing buttons ...
+//private JButton btnSend, btnDirectMessage, btnCommunity, btnWall, btnSeniors, btnExport, btnLogout;
+//private JButton btnEditProfile; // <--- ADD THIS
 
     // --- Query Helper Classes ---
     private class JobQueryParams { String department, role, location, company, jobType; }
@@ -61,6 +64,15 @@ public class chatinterface extends JFrame {
             loadUserData(username);
             btnSeniors.setVisible(true); // Students need this
         }
+        if ("alumni".equalsIgnoreCase(role)) {
+    loadAlumniData(username);
+    btnSeniors.setVisible(false); 
+    btnEditProfile.setVisible(true); // ✅ Alumni CAN see it
+} else {
+    loadUserData(username);
+    btnSeniors.setVisible(true);
+    btnEditProfile.setVisible(false); // ❌ Students CANNOT see it
+}
     }
 
     // --- GUI BUILDER (Modern Layout) ---
@@ -117,6 +129,8 @@ public class chatinterface extends JFrame {
         btnSeniors = createMenuButton("👨‍🎓 View Seniors");
         btnExport = createMenuButton("💾 Export Chat");
         btnLogout = createMenuButton("🚪 Logout");
+        btnEditProfile = createMenuButton("✏️ Edit Profile");
+
         btnLogout.setBackground(new Color(192, 57, 43)); // Red for logout
 
         // Adding Actions
@@ -126,6 +140,7 @@ public class chatinterface extends JFrame {
         btnSeniors.addActionListener(e -> actionViewSeniors());
         btnExport.addActionListener(e -> actionExportChat());
         btnLogout.addActionListener(e -> actionLogout());
+        btnEditProfile.addActionListener(e -> new AlumniProfileEdit(this.username).setVisible(true));
 
         // -- Add Components to Sidebar --
         pnlSideBar.add(lblTitle);
@@ -155,6 +170,8 @@ public class chatinterface extends JFrame {
         pnlSideBar.add(Box.createVerticalStrut(8));
         pnlSideBar.add(btnExport);
         pnlSideBar.add(Box.createVerticalGlue()); // Push logout to bottom
+        pnlSideBar.add(btnEditProfile); // <--- ADD THIS
+        pnlSideBar.add(Box.createVerticalGlue());
         pnlSideBar.add(btnLogout);
 
         // ===========================================================================
