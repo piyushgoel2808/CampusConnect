@@ -120,7 +120,8 @@ USE chatbot;
 INSERT INTO `administrators` (`admin_id`, `username`, `password`, `email`) VALUES
 (1, 'admin_raj', 'Raj@123', 'raj.mehta@college.edu'),
 (2, 'admin_neha', 'Neha@123', 'neha.kapoor@college.edu');
-
+INSERT INTO `administrators` (`admin_id`, `username`, `password`, `email`) VALUES
+(3, 'admin288', 'admin288', 'admin288@college.edu');
 -- -----------------------------------------------------
 -- 2. Insert data into `alumni`
 -- -----------------------------------------------------
@@ -135,6 +136,8 @@ INSERT INTO `alumni` (`alumni_id`, `name`, `email`, `batch`, `department`, `comp
 (8, 'Kavita Reddy', 'kavita.reddy@alumni.edu', 2019, 'Computer Science', 'Accenture', 'Data Analyst', 'kavita_r', 'Kavita@123'),
 (9, 'Mohit Singh', 'mohit.singh@alumni.edu', 2020, 'IT', 'Tech Mahindra', 'Cloud Engineer', 'mohit_s', 'Mohit@123'),
 (10, 'Divya Joshi', 'divya.joshi@alumni.edu', 2021, 'Electronics', 'Intel', 'Hardware Engineer', 'divya_j', 'Divya@123');
+INSERT INTO `alumni` (`alumni_id`, `name`, `email`, `batch`, `department`, `company`, `designation`, `username`, `password`) VALUES
+(11, 'Lakshay Chawla', 'lakshay@alumni.edu', 2024, 'Computer Science', 'Cvent', 'SDET', 'lakshay', 'lakshay288');
 
 -- -----------------------------------------------------
 -- 3. Insert data into `chatbot_data`
@@ -179,8 +182,13 @@ INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `password`) VALUES
 (7, 'Ravi Menon', 'ravi.menon@user.edu', 'ravi_m', 'Ravi@123'),
 (8, 'Neeraj Bansal', 'neeraj.bansal@user.edu', 'neeraj_b', 'Neeraj@123'),
 (9, 'Tanya Kapoor', 'tanya.kapoor@user.edu', 'tanya_k', 'Tanya@123'),
-(10, 'Aditya Sinha', 'aditya.sinha@user.edu', 'aditya_s', 'Aditya@123');
-
+(10, 'Aditya Sinha', 'aditya.sinha@user.edu', 'aditya_s', 'Aditya@123'),
+(11, 'Piyush Goel', 'piyushgoel288@gmail.com', 'piyush288', 'piyush288');
+INSERT INTO `users` (`user_id`, `name`, `email`, `username`, `password`) VALUES
+(12, 'Varun Rawat', 'varun@user.edu', 'varun', 'varun288'),
+(13, 'Rudransh', 'rudransh@user.edu', 'rudransh', 'rudransh'),
+(14, 'Hrik', 'Hrik@user.edu', 'hrik', 'hrik288'),
+(15, 'Saksham', 'Saksham@gmail.com', 'saksham', 'saksham288');
 -- -----------------------------------------------------
 -- 7. Insert data into `events`
 -- -----------------------------------------------------

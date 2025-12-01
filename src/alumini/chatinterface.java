@@ -188,7 +188,7 @@ public class chatinterface extends JFrame {
         JLabel lblChatIcon = new JLabel("🤖");
         lblChatIcon.setFont(new Font("Segoe UI Emoji", Font.PLAIN, 24));
         
-        JLabel lblChatTitle = new JLabel("  BVICAM AI Assistant");
+        JLabel lblChatTitle = new JLabel(" BVICAM Virtual Assistant ");
         lblChatTitle.setFont(new Font("Segoe UI", Font.BOLD, 18));
         lblChatTitle.setForeground(new Color(44, 62, 80));
         
