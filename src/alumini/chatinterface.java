@@ -28,6 +28,7 @@ public class chatinterface extends JFrame {
     
     // ✅ FIXED: Variable names now match exactly
     private JButton btnSend, btnDirectMessage, btnCommunity, btnWall, btnSeniors, btnExport, btnLogout,btnEditProfile;
+    private JButton btnFeedback;
     
     // Profile Labels
     private JLabel lblWelcome, lblEmail, lblBatch, lblDept, lblCompany, lblRole;
@@ -128,6 +129,8 @@ public class chatinterface extends JFrame {
         btnWall = createMenuButton("[+] Memory Wall");
         btnSeniors = createMenuButton("👨‍🎓 View Seniors");
         btnExport = createMenuButton("💾 Export Chat");
+        btnFeedback = createMenuButton("📝 Give Feedback");
+
         btnLogout = createMenuButton("X Logout");
         btnEditProfile = createMenuButton("Edit Profile");
 
@@ -139,6 +142,7 @@ public class chatinterface extends JFrame {
         btnWall.addActionListener(e -> actionMemoryWall());
         btnSeniors.addActionListener(e -> actionViewSeniors());
         btnExport.addActionListener(e -> actionExportChat());
+        btnFeedback.addActionListener(e -> new FeedbackForm(this.username, this.role).setVisible(true));
         btnLogout.addActionListener(e -> actionLogout());
         btnEditProfile.addActionListener(e -> new AlumniProfileEdit(this.username).setVisible(true));
 
@@ -168,6 +172,9 @@ public class chatinterface extends JFrame {
         pnlSideBar.add(Box.createVerticalStrut(8));
         pnlSideBar.add(btnSeniors);
         pnlSideBar.add(Box.createVerticalStrut(8));
+        pnlSideBar.add(btnExport);
+        pnlSideBar.add(Box.createVerticalStrut(8));
+        pnlSideBar.add(btnFeedback); // <--- Add it here
         pnlSideBar.add(btnExport);
         pnlSideBar.add(Box.createVerticalGlue()); // Push logout to bottom
         pnlSideBar.add(btnEditProfile); // <--- ADD THIS
